@@ -63,6 +63,11 @@ nav ul {
   width: 100%;
 }
 
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -140,6 +145,52 @@ main {
   color: white;
 }
 
+.namePrice a {
+  text-decoration: none;
+  color: black
+}
+
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+}
+
+.vehicle-info {
+  flex: 1;
+}
+
+.vehicle-info h2 {
+  margin: 0;  
+  padding: 0;  
+}
+
+.price-mileage {
+  margin: 1.5rem 0;
+  font-size: 1.2rem;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.vehicle-specs {
+  display: grid;
+  gap: 1rem;
+}
+
+.vehicle-specs span {
+  font-weight: bold;
+}
+
 footer {
   flex-shrink: 0;
   padding: 20px;
@@ -187,7 +238,20 @@ footer {
     grid-row: 1; 
   }
   
-  
+  .vehicle-detail {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .vehicle-image {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .vehicle-info {
+    flex: 1;
+    padding-left: 2rem;
+  }
   
   
 }
