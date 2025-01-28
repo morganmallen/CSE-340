@@ -1,0 +1,46 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } %> <%- messages() %>
+
+<div class="login-container">
+  <form id="loginForm" action="/account/login" method="post">
+    <fieldset>
+      <div class="form-group">
+        <label for="account_email">Email:</label>
+        <input
+          type="email"
+          id="account_email"
+          name="account_email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="account_password">Password:</label>
+        <input
+          type="password"
+          id="account_password"
+          name="account_password"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+          placeholder="Enter your password"
+        />
+        <div class="password-requirements">
+          <p>Password Requirements:</p>
+          <ul>
+            <li>Must be at least 12 characters long</li>
+            <li>Must contain at least 1 capital letter</li>
+            <li>Must contain at least 1 number</li>
+            <li>Must contain at least 1 special character</li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit">Login</button>
+      </div>
+    </fieldset>
+  </form>
+  <div class="register-link">
+    <p>No account? <a href="/account/register">Sign-up</a></p>
+  </div>
+</div>
