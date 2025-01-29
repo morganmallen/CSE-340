@@ -200,7 +200,8 @@ footer {
 /* login page */
 
 .login-container,
-.register-container {
+.register-container,
+.form-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
