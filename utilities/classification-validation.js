@@ -6,7 +6,6 @@ const validate = {}
  * ********************************* */
 validate.classificationRules = () => {
   return [
-    // classification name is required and must contain only letters and numbers
     body("classification_name")
       .trim()
       .isLength({ min: 1 })

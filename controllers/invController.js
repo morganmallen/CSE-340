@@ -64,12 +64,12 @@ invCont.buildAddClassification = async function (req, res, next) {
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav();
-  const classificationList = await utilities.buildClassificationList(); // Add this line
+  const classificationList = await utilities.buildClassificationList(); 
   res.render("inventory/add-inventory", {
     title: "Add New Vehicle",
     nav,
     errors: null,
-    classificationList, // Add this line
+    classificationList, 
   });
 };
 

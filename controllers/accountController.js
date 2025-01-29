@@ -38,10 +38,8 @@ async function registerAccount(req, res) {
       account_password,
     } = req.body;
 
-    // Hash the password before storing
   let hashedPassword
   try {
-    // regular password and cost (salt is generated automatically)
     hashedPassword = await bcrypt.hashSync(account_password, 10)
   } catch (error) {
     req.flash("notice", 'Sorry, there was an error processing the registration.')
@@ -89,8 +87,6 @@ async function loginAccount(req, res) {
     let nav = await utilities.getNav();
     const { account_email, account_password } = req.body;
     
-    // Check credentials with database
-    // Note: You would typically add a check against a hashed password here
     const accountData = await accountModel.getAccountByEmail(account_email);
     
     if (!accountData) {
@@ -106,7 +102,6 @@ async function loginAccount(req, res) {
     
     try {
       if (account_password === accountData.account_password) {
-        // Note: In production, use bcrypt.compare() instead of direct comparison
         delete accountData.account_password;
         req.session.accountData = accountData;
         res.redirect("/account/");
