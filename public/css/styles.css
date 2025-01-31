@@ -272,6 +272,57 @@ input:required:valid {
   background-repeat: no-repeat;
 }
 
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#inventoryDisplay thead {
+  background-color: #f4f4f4;
+}
+
+#inventoryDisplay th {
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+#inventoryDisplay a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
+#inventoryDisplay tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+#inventoryDisplay td {
+  text-align: center;
+}
+
+
 @media screen and (min-width: 700px) {
   #wrapper {
     background-color: white;

@@ -26,6 +26,10 @@ router.get(
   utilities.handleErrors(invController.buildAddInventory)
 );
 
+router.get(
+  "/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON)
+)
+
 // Route to trigger intentional 500 error
 router.get("/error", (req, res, next) => {
   if (!invController.triggerError) {
