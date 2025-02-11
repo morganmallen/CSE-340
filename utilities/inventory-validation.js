@@ -100,4 +100,50 @@ inventoryValidate.checkInventoryData = async (req, res, next) => {
   next();
 };
 
+/* ******************************
+ * Check Updated Inventory Data and return errors or continue to update
+ * ***************************** */
+inventoryValidate.checkUpdateData = async (req, res, next) => {
+  const { 
+    inv_id, // Added inventory ID
+    inv_make, 
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id 
+  } = req.body;
+  
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    const classificationList = await utilities.buildClassificationList(classification_id);
+
+    res.render("inventory/edit-inventory", { // Changed to edit-inventory
+      errors,
+      title: `Edit ${inv_make} ${inv_model}`, // Changed title to match controller
+      nav,
+      classificationList,
+      inv_id, // Ensure the inv_id is passed back
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    });
+    return;
+  }
+  next();
+};
+
+
 module.exports = inventoryValidate;
