@@ -32,6 +32,8 @@ router.get(
 
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory));
 
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventory))
+
 
 // Route to trigger intentional 500 error
 router.get("/error", (req, res, next) => {
@@ -63,5 +65,10 @@ router.post(
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
+
+router.post(
+  "/delete/",
+  utilities.handleErrors(invController.deleteInventory)
+)
 
 module.exports = router;
