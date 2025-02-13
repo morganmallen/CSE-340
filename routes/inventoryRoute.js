@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities");
 const classValidate = require("../utilities/classification-validation");
 const invValidate = require("../utilities/inventory-validation");
+const { checkAdminEmployee } = require("../utilities/account-authorization");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -17,23 +18,34 @@ router.get("/", utilities.handleErrors(invController.buildManagement));
 // Route to build add classification view
 router.get(
   "/add-classification",
+  checkAdminEmployee,
   utilities.handleErrors(invController.buildAddClassification)
 );
 
 // Route to build add inventory view
 router.get(
   "/add-inventory",
+  checkAdminEmployee,
   utilities.handleErrors(invController.buildAddInventory)
 );
 
 router.get(
-  "/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON)
-)
+  "/getInventory/:classification_id",
+  checkAdminEmployee,
+  utilities.handleErrors(invController.getInventoryJSON)
+);
 
-router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory));
+router.get(
+  "/edit/:inv_id",
+  checkAdminEmployee,
+  utilities.handleErrors(invController.buildEditInventory)
+);
 
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventory))
-
+router.get(
+  "/delete/:inv_id",
+  checkAdminEmployee,
+  utilities.handleErrors(invController.buildDeleteInventory)
+);
 
 // Route to trigger intentional 500 error
 router.get("/error", (req, res, next) => {
@@ -46,6 +58,7 @@ router.get("/error", (req, res, next) => {
 
 router.post(
   "/add-classification",
+  checkAdminEmployee,
   classValidate.classificationRules(),
   classValidate.checkClassData,
   utilities.handleErrors(invController.addClassification)
@@ -53,6 +66,7 @@ router.post(
 
 router.post(
   "/add-inventory",
+  checkAdminEmployee,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
@@ -61,6 +75,7 @@ router.post(
 // Route to handle inventory update
 router.post(
   "/update/",
+  checkAdminEmployee,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
@@ -68,7 +83,8 @@ router.post(
 
 router.post(
   "/delete/",
+  checkAdminEmployee,
   utilities.handleErrors(invController.deleteInventory)
-)
+);
 
 module.exports = router;
